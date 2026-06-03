@@ -32,6 +32,12 @@ class _HomeViewState extends State<HomeView> {
   ];
   // 分类数据
   List<CategoryItem> _categoryList = [];
+  // 特惠推荐数据
+  SpecialRecommendResult _specialRecommendResult = SpecialRecommendResult(
+    id: "",
+    title: "",
+    subTypes: [],
+  );
 
   // 获取滚动容器的内容
   List<Widget> _getScrollChildren() {
@@ -46,7 +52,9 @@ class _HomeViewState extends State<HomeView> {
       // 中间的间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 放置推荐组件
-      SliverToBoxAdapter(child: BdSuggestion()),
+      SliverToBoxAdapter(
+        child: BdSuggestion(specialRecommendResult: _specialRecommendResult),
+      ),
       // 中间的间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 放置爆款组件
@@ -79,17 +87,24 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     _getBannerList();
     _getCategoryList();
+    _getProductList();
   }
 
-  // 调用接口，赋值数据
+  // 获取轮播图列表
   void _getBannerList() async {
     _bannerList = await getBannerListAPI();
     setState(() {});
   }
 
+  // 获取分类列表
   void _getCategoryList() async {
     _categoryList = await getCategoryListAPI();
-    print(_categoryList);
+    setState(() {});
+  }
+
+  // 获取特惠推荐列表
+  void _getProductList() async {
+    _specialRecommendResult = await getProductListAPI();
     setState(() {});
   }
 
