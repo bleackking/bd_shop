@@ -3,6 +3,7 @@ import 'package:bd_shop/components/Home/BdHot.dart';
 import 'package:bd_shop/components/Home/BdMoreList.dart';
 import 'package:bd_shop/components/Home/BdSlider.dart';
 import 'package:bd_shop/components/Home/BdSuggestion.dart';
+import 'package:bd_shop/viewmodels/home.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -13,11 +14,27 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  // 模拟轮播图数据
+  final List<BannerItem> _bannerList = [
+    BannerItem(
+      id: "1",
+      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg",
+    ),
+    BannerItem(
+      id: "2",
+      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.jpg",
+    ),
+    BannerItem(
+      id: "3",
+      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg",
+    ),
+  ];
+
   // 获取滚动容器的内容
   List<Widget> _getScrollChildren() {
     return [
       // 包裹普通Widget
-      SliverToBoxAdapter(child: BdSlider()), // 轮播图组件
+      SliverToBoxAdapter(child: BdSlider(bannerList: _bannerList)), // 轮播图组件
       // 中间的间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 放置分类组件
