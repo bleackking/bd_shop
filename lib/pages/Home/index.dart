@@ -1,3 +1,4 @@
+import 'package:bd_shop/api/home.dart';
 import 'package:bd_shop/components/Home/BdCategory.dart';
 import 'package:bd_shop/components/Home/BdHot.dart';
 import 'package:bd_shop/components/Home/BdMoreList.dart';
@@ -15,20 +16,22 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   // 模拟轮播图数据
-  final List<BannerItem> _bannerList = [
-    BannerItem(
-      id: "1",
-      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg",
-    ),
-    BannerItem(
-      id: "2",
-      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.jpg",
-    ),
-    BannerItem(
-      id: "3",
-      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg",
-    ),
+  List<BannerItem> _bannerList = [
+    // BannerItem(
+    //   id: "1",
+    //   imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg",
+    // ),
+    // BannerItem(
+    //   id: "2",
+    //   imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.jpg",
+    // ),
+    // BannerItem(
+    //   id: "3",
+    //   imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg",
+    // ),
   ];
+  // 分类数据
+  List<CategoryItem> _categoryList = [];
 
   // 获取滚动容器的内容
   List<Widget> _getScrollChildren() {
@@ -39,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 放置分类组件
       // SliverGrid 和 SliverList只能纵向排列
-      SliverToBoxAdapter(child: BdCategory()),
+      SliverToBoxAdapter(child: BdCategory(categoryList: _categoryList)),
       // 中间的间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 放置推荐组件
@@ -68,6 +71,26 @@ class _HomeViewState extends State<HomeView> {
       // 商品无限滚动列表组件
       BdMoreList(),
     ];
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getBannerList();
+    _getCategoryList();
+  }
+
+  // 调用接口，赋值数据
+  void _getBannerList() async {
+    _bannerList = await getBannerListAPI();
+    setState(() {});
+  }
+
+  void _getCategoryList() async {
+    _categoryList = await getCategoryListAPI();
+    print(_categoryList);
+    setState(() {});
   }
 
   @override

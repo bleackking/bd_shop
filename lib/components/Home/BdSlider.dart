@@ -92,7 +92,7 @@ class _BdSliderState extends State<BdSlider> {
               // AnimatedContainer：动画效果组件
               child: AnimatedContainer(
                 // 动画过渡时长
-                duration: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 300),
                 height: 6,
                 // 激活的状态下宽度是40
                 width: index == _currentIndex ? 40 : 20,
