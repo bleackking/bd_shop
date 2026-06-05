@@ -73,7 +73,7 @@ class _BdSuggestionState extends State<BdSuggestion> {
               errorBuilder: (context, error, stackTrace) {
                 // 当图片加载失败，返回新的部件替换原有的图片
                 return Image.asset(
-                  "lib/assets/images/home_cmd_inner.png",
+                  "lib/assets/images/1.jpg",
                   width: 100,
                   height: 140,
                   fit: BoxFit.cover,
