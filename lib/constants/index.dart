@@ -20,4 +20,8 @@ class HttpConstants {
   static const String ONE_STOP_LIST = "/hot/oneStop";
   // 推荐列表地址
   static const String RECOMMEND_LIST = "/home/recommend";
+  // 猜你喜欢地址
+  static const String GUESS_LIST = "/home/goods/guessLike";
+  // 返回的结构类型 GoodsItems 类型
+  
 }
